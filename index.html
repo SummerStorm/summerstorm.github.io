@@ -1,17 +1,34 @@
-<button type="button" onclick="if(typeof android !== 'undefined'){android.sign();}">Sign</button><br>
+<html>
+<script>
+function success(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
-<br>
+  if (!latitude || !longitude) {
+    alert(    document.getElementById("status").innerHTML = "HTML5 Geolocation is supported in your browser, but location is currently not available.");
+    return;
+  }
 
-<a href="tel:123">Call 123</a>
+  alert("Your position is (" + longitude + ", " + latitude + ").");
+}
 
-<br>
+function handleeLocationError(error)
+   {
+       switch (error.code) {
+           case 0: alert(error.message); break;
+           case 1: alert(error.message); break;
+           case 2: alert(error.message); break;
+           case 3: alert(error.message); break;
+       }
+   }
 
-<button type="button" onclick="alert('test!');">Test alert()</button><br>
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, handleeLocationError);
+} else {
+  error('HTML5 Geolocation is not supported');
+}
 
-<br>
+</script>
 
-<p id="demo"></p>
-
-<br>
-
-<button type="button" onclick="var person = prompt('Please enter your name', 'Bob'); alert('Hi '+ person);">Test prompt()</button><br>
+Geolocation testing page.
+</html>
